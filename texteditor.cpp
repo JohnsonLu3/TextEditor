@@ -6,6 +6,7 @@ TextEditor::TextEditor(QWidget *parent) :
     ui(new Ui::TextEditor)
 {
     ui->setupUi(this);
+    setCentralWidget(ui->plainTextEdit);
 }
 
 TextEditor::~TextEditor()
