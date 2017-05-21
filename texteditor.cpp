@@ -1,5 +1,7 @@
 #include "texteditor.h"
 #include "ui_texteditor.h"
+#include <QClipboard>
+#include <QMimeData>
 
 TextEditor::TextEditor(QWidget *parent) :
     QMainWindow(parent),
@@ -12,4 +14,9 @@ TextEditor::TextEditor(QWidget *parent) :
 TextEditor::~TextEditor()
 {
     delete ui;
+}
+
+void TextEditor::on_actionPaste_triggered()
+{
+
 }

@@ -15,6 +15,9 @@ public:
     explicit TextEditor(QWidget *parent = 0);
     ~TextEditor();
 
+private slots:
+    void on_actionPaste_triggered();
+
 private:
     Ui::TextEditor *ui;
 };
