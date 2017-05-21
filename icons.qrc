@@ -12,5 +12,12 @@
         <file>assets/icons/save1.png</file>
         <file>assets/icons/select.png</file>
         <file>assets/icons/undo.png</file>
+        <file>assets/icons/Bold.png</file>
+        <file>assets/icons/CenterAlign.png</file>
+        <file>assets/icons/Italic.png</file>
+        <file>assets/icons/leftAlign.png</file>
+        <file>assets/icons/RightAlign.png</file>
+        <file>assets/icons/Underline.png</file>
+        <file>assets/icons/print.png</file>
     </qresource>
 </RCC>

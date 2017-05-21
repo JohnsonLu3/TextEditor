@@ -22,6 +22,12 @@
      <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="text">
     <string>Text Editor</string>
    </property>
@@ -86,6 +92,11 @@
      <width>151</width>
      <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <underline>true</underline>
+    </font>
    </property>
    <property name="text">
     <string>For bugs or general contacting</string>

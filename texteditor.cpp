@@ -1,5 +1,6 @@
 #include "texteditor.h"
 #include "ui_texteditor.h"
+#include "about.h"
 #include <QClipboard>
 #include <QMimeData>
 
@@ -44,4 +45,21 @@ void TextEditor::on_actionRedo_triggered()
 void TextEditor::on_actionSelect_All_triggered()
 {
     ui->plainTextEdit->selectAll();
+}
+
+void TextEditor::on_actionAbout_triggered()
+{
+    About ab;
+    ab.setModal(true);
+    ab.exec();
+}
+
+void TextEditor::on_actionPrint_triggered()
+{
+
+}
+
+void TextEditor::on_actionQuit_triggered()
+{
+    QApplication::quit();
 }

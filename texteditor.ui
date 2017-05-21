@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
-    <height>443</height>
+    <width>1079</width>
+    <height>658</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>611</width>
-      <height>391</height>
+      <width>1081</width>
+      <height>581</height>
      </rect>
     </property>
    </widget>
@@ -30,7 +30,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>605</width>
+     <width>1079</width>
      <height>21</height>
     </rect>
    </property>
@@ -42,7 +42,9 @@
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionOpen_Recent"/>
+    <addaction name="actionPrint"/>
     <addaction name="actionClose"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -67,8 +69,9 @@
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
-     <string>About</string>
+     <string>Help</string>
     </property>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -85,6 +88,7 @@
    <addaction name="actionNew"/>
    <addaction name="actionOpen"/>
    <addaction name="actionSave"/>
+   <addaction name="actionPrint"/>
    <addaction name="separator"/>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
@@ -93,6 +97,14 @@
    <addaction name="actionCopy"/>
    <addaction name="actionPaste"/>
    <addaction name="actionSelect_All"/>
+   <addaction name="separator"/>
+   <addaction name="actionBold"/>
+   <addaction name="actionUnderLine"/>
+   <addaction name="actionItalic"/>
+   <addaction name="separator"/>
+   <addaction name="actionLeftAlign"/>
+   <addaction name="actionCenterAlign"/>
+   <addaction name="actionRightAlign"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew">
@@ -125,6 +137,10 @@
    </property>
   </action>
   <action name="actionClose">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/close.png</normaloff>:/assets/icons/close.png</iconset>
+   </property>
    <property name="text">
     <string>Close</string>
    </property>
@@ -212,6 +228,79 @@
    </property>
    <property name="text">
     <string>Save</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionBold">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/Bold.png</normaloff>:/assets/icons/Bold.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bold</string>
+   </property>
+  </action>
+  <action name="actionUnderLine">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/Underline.png</normaloff>:/assets/icons/Underline.png</iconset>
+   </property>
+   <property name="text">
+    <string>UnderLine</string>
+   </property>
+  </action>
+  <action name="actionItalic">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/Italic.png</normaloff>:/assets/icons/Italic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Italic</string>
+   </property>
+  </action>
+  <action name="actionLeftAlign">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/leftAlign.png</normaloff>:/assets/icons/leftAlign.png</iconset>
+   </property>
+   <property name="text">
+    <string>LeftAlign</string>
+   </property>
+  </action>
+  <action name="actionCenterAlign">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/CenterAlign.png</normaloff>:/assets/icons/CenterAlign.png</iconset>
+   </property>
+   <property name="text">
+    <string>CenterAlign</string>
+   </property>
+  </action>
+  <action name="actionRightAlign">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/RightAlign.png</normaloff>:/assets/icons/RightAlign.png</iconset>
+   </property>
+   <property name="text">
+    <string>RightAlign</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/assets/icons/print.png</normaloff>:/assets/icons/print.png</iconset>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
    </property>
   </action>
  </widget>

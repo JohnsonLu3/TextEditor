@@ -28,6 +28,12 @@ private slots:
 
     void on_actionSelect_All_triggered();
 
+    void on_actionAbout_triggered();
+
+    void on_actionPrint_triggered();
+
+    void on_actionQuit_triggered();
+
 private:
     Ui::TextEditor *ui;
 };
