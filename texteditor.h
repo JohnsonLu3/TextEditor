@@ -34,6 +34,10 @@ private slots:
 
     void on_actionQuit_triggered();
 
+    void on_actionSave_triggered();
+
+    void on_actionOpen_triggered();
+
 private:
     Ui::TextEditor *ui;
 };

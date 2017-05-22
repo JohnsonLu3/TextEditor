@@ -3,6 +3,7 @@
 #include "about.h"
 #include <QClipboard>
 #include <QMimeData>
+#include <QFileDialog>
 
 TextEditor::TextEditor(QWidget *parent) :
     QMainWindow(parent),
@@ -62,4 +63,39 @@ void TextEditor::on_actionPrint_triggered()
 void TextEditor::on_actionQuit_triggered()
 {
     QApplication::quit();
+}
+
+/**
+ * Save function
+ *
+ * Takes the text from the plainTextEdit and stores it
+ * into a .txt file for future use
+ */
+void TextEditor::on_actionSave_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(
+                this,
+                tr("Save File"),
+                QDir::homePath(),
+                tr("Text File (*.txt)")
+                );
+
+}
+
+/**
+ * Open Function
+ *
+ * Opens a .txt file and if there is already an open file
+ * that was edited than prompt the user to save before
+ * opening a new file
+ */
+void TextEditor::on_actionOpen_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Open File"),
+                QDir::homePath(),
+                tr("Text File (*.txt)")
+                );
+
 }
