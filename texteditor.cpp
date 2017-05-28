@@ -4,6 +4,11 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QFileDialog>
+#include <QFile>
+#include <QTextDocumentWriter>
+#include <QTextCodec>
+#include <QByteArray>
+#include <QMessageBox>
 
 TextEditor::TextEditor(QWidget *parent) :
     QMainWindow(parent),
@@ -80,6 +85,13 @@ void TextEditor::on_actionSave_triggered()
                 tr("Text File (*.txt)")
                 );
 
+    QFile file(filename);
+    QTextDocumentWriter writer(filename);
+    writer.write(ui->plainTextEdit->document());
+
+    QString textData = ui->plainTextEdit->toPlainText();
+
+
 }
 
 /**
@@ -98,4 +110,29 @@ void TextEditor::on_actionOpen_triggered()
                 tr("Text File (*.txt)")
                 );
 
+    if(QFile::exists(filename)){
+        QFile file(filename);
+        file.open(QFile::ReadOnly);
+        QByteArray textData = file.readAll();
+        QTextCodec *codec   = Qt::codecForHtml(textData);
+        //QString    text     = codec->toUnicode(data);
+
+        QString text = QString::fromLocal8Bit(textData);
+        ui->plainTextEdit->setPlainText(text);
+    }else{
+        // FILE DOES NOT EXIST
+        QMessageBox msgBox;
+        msgBox.setInformativeText("File Does Not Exist!");
+        msgBox.setText(filename);
+        msgBox.exec();
+    }
+
+
+
+}
+
+void TextEditor::on_actionNew_triggered()
+{
+    // CHECK IF EDITED IN THE FUTURE
+    ui->plainTextEdit->clear();
 }
