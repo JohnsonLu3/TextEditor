@@ -9,6 +9,26 @@
 #include <QTextCodec>
 #include <QByteArray>
 #include <QMessageBox>
+#include <QFont>
+
+bool EDITED = false;
+
+/**
+ * @brief saveEdites
+ * Prompts a save dialog to check if the user wishes to save
+ * their edits before continuing
+ * @return user save choice
+ */
+int saveEdits(){
+    QMessageBox msgBox;
+    msgBox.setText("The document has been modified.");
+    msgBox.setInformativeText("Do you want to save your changes?");
+    msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Save);
+    int ret = msgBox.exec();
+
+    return ret;
+}
 
 TextEditor::TextEditor(QWidget *parent) :
     QMainWindow(parent),
@@ -67,7 +87,22 @@ void TextEditor::on_actionPrint_triggered()
 
 void TextEditor::on_actionQuit_triggered()
 {
-    QApplication::quit();
+    if(EDITED == true){
+        int ret = saveEdits();
+        if(ret == QMessageBox::Save){
+            // save and quit
+            TextEditor::on_actionSave_triggered();
+            QApplication::quit();
+        }else if(ret ==  QMessageBox::Discard){
+            // don't save and quit
+            QApplication::quit();
+        }else{
+            // cancel, do nothing
+        }
+    }else{
+        QApplication::quit();
+    }
+
 }
 
 /**
@@ -103,36 +138,64 @@ void TextEditor::on_actionSave_triggered()
  */
 void TextEditor::on_actionOpen_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(
+
+    if(EDITED == true){
+        int ret = saveEdits();
+        if(ret == QMessageBox::Save){
+            // save and quit
+            TextEditor::on_actionSave_triggered();
+            EDITED = false;
+        }else if(ret ==  QMessageBox::Discard){
+            EDITED = false;
+        }else{
+            // cancel, do nothing
+            return;
+        }
+    }
+        QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Open File"),
                 QDir::homePath(),
                 tr("Text File (*.txt)")
                 );
 
-    if(QFile::exists(filename)){
-        QFile file(filename);
-        file.open(QFile::ReadOnly);
-        QByteArray textData = file.readAll();
-        QTextCodec *codec   = Qt::codecForHtml(textData);
-        //QString    text     = codec->toUnicode(data);
+        if(QFile::exists(filename)){
+            QFile file(filename);
+            file.open(QFile::ReadOnly);
+            QByteArray textData = file.readAll();
+            // QTextCodec *codec   = Qt::codecForHtml(textData);
+            //QString    text     = codec->toUnicode(data);
 
-        QString text = QString::fromLocal8Bit(textData);
-        ui->plainTextEdit->setPlainText(text);
-    }else{
-        // FILE DOES NOT EXIST
-        QMessageBox msgBox;
-        msgBox.setInformativeText("File Does Not Exist!");
-        msgBox.setText(filename);
-        msgBox.exec();
-    }
-
+            QString text = QString::fromLocal8Bit(textData);
+            ui->plainTextEdit->setPlainText(text);
+        }else{
+            // FILE DOES NOT EXIST
+            QMessageBox msgBox;
+            msgBox.setInformativeText("File Does Not Exist!");
+            msgBox.setText(filename);
+            msgBox.exec();
+        }
 
 
 }
 
 void TextEditor::on_actionNew_triggered()
 {
-    // CHECK IF EDITED IN THE FUTURE
-    ui->plainTextEdit->clear();
+    if(EDITED == true){
+        int ret = saveEdits();
+        if(ret == QMessageBox::Save){
+            // save and quit
+            TextEditor::on_actionSave_triggered();
+            EDITED = true;
+            ui->plainTextEdit->clear();
+        }else if(ret ==  QMessageBox::Discard){
+            EDITED = true;
+            ui->plainTextEdit->clear();
+        }else{
+            // cancel, do nothing
+        }
+    }else{
+        EDITED = true;
+        ui->plainTextEdit->clear();
+    }
 }

@@ -24,8 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        texteditor.cpp
+        texteditor.cpp \
+    about.cpp
 
-HEADERS  += texteditor.h
+HEADERS  += texteditor.h \
+    about.h
 
-FORMS    += texteditor.ui
+FORMS    += texteditor.ui \
+    about.ui
+
+RESOURCES += \
+    icons.qrc
